@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         REPAM – Rappel frais d’adhésion association
-// @namespace    https://github.com/BiggerThanTheMall/tampermonkey-repam
+// @namespace    https://github.com/BiggerThanTheMall/tampermonkey-ltoa
 // @version      3.3.0
 // @description  Rappel : REPAM facture 20€ de frais d’adhésion à l’association
 // @author       REPAM
@@ -8,8 +8,8 @@
 // @run-at       document-end
 // @grant        none
 
-// @updateURL    https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-repam/main/REPAM-Rappel-Adhesion.user.js
-// @downloadURL  https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-repam/main/REPAM-Rappel-Adhesion.user.js
+// @updateURL    https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js
+// @downloadURL  https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js
 // ==/UserScript==
 
 
