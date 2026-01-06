@@ -8,8 +8,8 @@
 // @run-at       document-end
 // @grant        none
 
-// @updateURL    https://raw.githubusercontent.com/VOTRE-USER/tampermonkey-repam/main/REPAM-Rappel-Adhesion.user.js
-// @downloadURL  https://raw.githubusercontent.com/VOTRE-USER/tampermonkey-repam/main/REPAM-Rappel-Adhesion.user.js
+// @updateURL    https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-repam/main/REPAM-Rappel-Adhesion.user.js
+// @downloadURL  https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-repam/main/REPAM-Rappel-Adhesion.user.js
 // ==/UserScript==
 
 
