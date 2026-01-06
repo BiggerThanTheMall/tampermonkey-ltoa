@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         REPAM – Rappel frais d’adhésion association
 // @namespace    https://github.com/BiggerThanTheMall/tampermonkey-ltoa
-// @version      3.3.0
+// @version      3.3.1
 // @description  Rappel : REPAM facture 20€ de frais d’adhésion à l’association
 // @author       REPAM
 // @match        https://its.pwa-assurance.fr/repam/*
