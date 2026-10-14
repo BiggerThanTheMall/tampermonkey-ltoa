@@ -27,7 +27,7 @@ Chaque lien ci-dessous pointe directement vers le fichier `.user.js` réel du d�
 | Import Aircall | 1.2.2 | [Installer](https://github.com/BiggerThanTheMall/modulr-aircall-import/raw/main/modulr-aircall-import.user.js) |
 | Déclaration AGIS | 1.1.6 | [Installer](https://github.com/BiggerThanTheMall/declaration-agis/raw/main/declaration-agis-automatique.user.js) |
 | REPAM rappel adhésion | 3.3.1 | [Installer](https://github.com/BiggerThanTheMall/tampermonkey-ltoa/raw/main/REPAM-Rappel-Adhesion.user.js) |
-| Export ModulR → KOALAH | 0.3.9 | [Installer](https://github.com/BiggerThanTheMall/export_modulr_koalah/raw/main/export_modulr_koalah.user.js) |
+| Export ModulR → KOALAH | 0.4.0 | [Installer](https://github.com/BiggerThanTheMall/export_modulr_koalah/raw/main/export_modulr_koalah.user.js) |
 
 ## Vérification des versions
 
