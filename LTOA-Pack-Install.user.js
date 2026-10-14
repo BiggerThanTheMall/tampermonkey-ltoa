@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LTOA - Pack Outils Tampermonkey
 // @namespace    https://github.com/BiggerThanTheMall/tampermonkey-ltoa
-// @version      1.0.0
+// @version      1.1.0
 // @description  Point d'entrée unique pour installer ou remettre à jour les outils LTOA.
 // @author       LTOA Assurances
 // @match        https://courtage.modulr.fr/*
@@ -15,27 +15,28 @@
     'use strict';
 
     const SCRIPTS = [
-        ['Rapport quotidien V5', 'https://raw.githubusercontent.com/BiggerThanTheMall/G-n-re-un-rapport-d-activit-quotidien-complet-emails-t-ches-journalisation-vulgaris-e-/main/LTOA-Modulr-Rapport-Quotidien.user.js'],
-        ['Tâche automatique changement état devis', 'https://raw.githubusercontent.com/BiggerThanTheMall/tache_automatique/main/creation_tache_automatique_changement_etat_devis.user.js'],
-        ['Terminer et dupliquer tâche', 'https://raw.githubusercontent.com/BiggerThanTheMall/terminer-et-dupliquer-tache/main/terminer-et-dupliquer-tache.user.js'],
-        ['Dupliquer et associer client', 'https://raw.githubusercontent.com/BiggerThanTheMall/Duplique-une-fiche-client-et-l-associe-automatiquement-au-client-d-origine/main/Modulr-Dupliquer-Associer-Client.user.js'],
-        ['Association rapide fiches récentes', 'https://raw.githubusercontent.com/BiggerThanTheMall/classer_mail_fiche_recentes/main/Modulr-Association-Rapide.user.js'],
-        ['Aperçu email centré', 'https://raw.githubusercontent.com/BiggerThanTheMall/Modulr-Apercu-Email-Centre.user.js/main/Modulr-Apercu-Email-Centre.user.js'],
-        ['Boutons copie rapide', 'https://raw.githubusercontent.com/BiggerThanTheMall/ModulR-Boutons-Copie/main/Modulr-Boutons-Copie-Rapide.user.js'],
-        ['Affichage âge client', 'https://raw.githubusercontent.com/BiggerThanTheMall/ModulR-Affichage-Age/main/Modulr-Affichage-Age.user.js'],
-        ['Âge dirigeants entreprise', 'https://raw.githubusercontent.com/BiggerThanTheMall/-l-ge-et-la-date-de-naissance-de-TOUS-les-dirigeants/main/Modulr-Age-Dirigeants-Entreprise.user.js'],
-        ['Création devis en masse', 'https://raw.githubusercontent.com/BiggerThanTheMall/cr-er-plusieurs-devis-simultan-ment/main/modulr-creation-devis-en-masse-iframes.user.js'],
-        ['Export client ModulR vers OGGO / AXA', 'https://raw.githubusercontent.com/BiggerThanTheMall/Exporte-automatiquement-un-client-de-Modulr-vers-OGGO-Data-ou-AXA-Particulier-Entreprise-/main/Modulr-Export-Client-OGGO-AXA.user.js'],
-        ['OGGO Projet chaud', 'https://raw.githubusercontent.com/BiggerThanTheMall/OGGO-DATA-Projet-Chaud/main/OGGO-Projet-Chaud-Auto.user.js'],
-        ['OCR documents vers ModulR', 'https://raw.githubusercontent.com/BiggerThanTheMall/Auto-remplissage-CRM-Modulr---OCR-CNI-Permis-Passeport-KBIS-via-Gemini/main/Modulr-Remplissage-Auto-OCR-V9.user.js'],
-        ['Correcteur email Gemini', 'https://raw.githubusercontent.com/BiggerThanTheMall/modulr-gemini-email-corrector/main/Modulr_-_Correcteur_Email_Gemini.user.js'],
-        ['Dictée email', 'https://raw.githubusercontent.com/BiggerThanTheMall/ecriture_mail_reconnaissance_vocale/main/micro_mail_vocal.user.js'],
-        ['Assistant vocal notes et tâches', 'https://raw.githubusercontent.com/BiggerThanTheMall/ajout_notes_et_taches_par_prise__2_note_vocale/main/ajout_note_et_tache_vocale.user.js'],
-        ['Liaison DER mail', 'https://raw.githubusercontent.com/BiggerThanTheMall/ajouter-der-mail/main/bouton-DER-mail.user.js'],
-        ['Import Aircall', 'https://raw.githubusercontent.com/BiggerThanTheMall/modulr-aircall-import/main/modulr-aircall-import.user.js'],
-        ['Déclaration AGIS', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-agis/main/declaration-agis-automatique.user.js'],
-        ['Déclaration CIEL', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-ciel/main/declaration-ciel-automatique.user.js'],
-        ['REPAM rappel adhésion', 'https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js']
+        ['Rapport quotidien V5 · v5.7.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/G-n-re-un-rapport-d-activit-quotidien-complet-emails-t-ches-journalisation-vulgaris-e-/main/LTOA-Modulr-Rapport-Quotidien.user.js'],
+        ['Tâche automatique changement état devis · v11.3.0', 'https://raw.githubusercontent.com/BiggerThanTheMall/tache_automatique/main/creation_tache_automatique_changement_etat_devis.user.js'],
+        ['Terminer et dupliquer tâche · v2.3', 'https://raw.githubusercontent.com/BiggerThanTheMall/terminer-et-dupliquer-tache/main/terminer-et-dupliquer-tache.user.js'],
+        ['Dupliquer et associer client · v1.9.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/Duplique-une-fiche-client-et-l-associe-automatiquement-au-client-d-origine/main/Modulr-Dupliquer-Associer-Client.user.js'],
+        ['Association rapide fiches récentes · v1.1.0', 'https://raw.githubusercontent.com/BiggerThanTheMall/classer_mail_fiche_recentes/main/Modulr-Association-Rapide.user.js'],
+        ['Aperçu email centré · v1.0.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/Modulr-Apercu-Email-Centre.user.js/main/Modulr-Apercu-Email-Centre.user.js'],
+        ['Boutons copie rapide · v2.0.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/ModulR-Boutons-Copie/main/Modulr-Boutons-Copie-Rapide.user.js'],
+        ['Affichage âge client · v1.1.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/ModulR-Affichage-Age/main/Modulr-Affichage-Age.user.js'],
+        ['Âge dirigeants entreprise · v2.2', 'https://raw.githubusercontent.com/BiggerThanTheMall/-l-ge-et-la-date-de-naissance-de-TOUS-les-dirigeants/main/Modulr-Age-Dirigeants-Entreprise.user.js'],
+        ['Création devis en masse · v1.7', 'https://raw.githubusercontent.com/BiggerThanTheMall/cr-er-plusieurs-devis-simultan-ment/main/modulr-creation-devis-en-masse-iframes.user.js'],
+        ['Export client ModulR vers OGGO / AXA · v4.10.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/Exporte-automatiquement-un-client-de-Modulr-vers-OGGO-Data-ou-AXA-Particulier-Entreprise-/main/Modulr-Export-Client-OGGO-AXA.user.js'],
+        ['OGGO Projet chaud · v1.5', 'https://raw.githubusercontent.com/BiggerThanTheMall/OGGO-DATA-Projet-Chaud/main/OGGO-Projet-Chaud-Auto.user.js'],
+        ['OCR documents vers ModulR · v10.2.2', 'https://raw.githubusercontent.com/BiggerThanTheMall/Auto-remplissage-CRM-Modulr---OCR-CNI-Permis-Passeport-KBIS-via-Gemini/main/Modulr-Remplissage-Auto-OCR-V9.user.js'],
+        ['Correcteur email Gemini · v3.4.0', 'https://raw.githubusercontent.com/BiggerThanTheMall/modulr-gemini-email-corrector/main/Modulr_-_Correcteur_Email_Gemini.user.js'],
+        ['Dictée email · v3.1.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/ecriture_mail_reconnaissance_vocale/main/micro_mail_vocal.user.js'],
+        ['Assistant vocal notes et tâches · v9.8.4', 'https://raw.githubusercontent.com/BiggerThanTheMall/ajout_notes_et_taches_par_prise__2_note_vocale/main/ajout_note_et_tache_vocale.user.js'],
+        ['Liaison DER mail · v8.2', 'https://raw.githubusercontent.com/BiggerThanTheMall/ajouter-der-mail/main/bouton-DER-mail.user.js'],
+        ['Import Aircall · v1.2.2', 'https://raw.githubusercontent.com/BiggerThanTheMall/modulr-aircall-import/main/modulr-aircall-import.user.js'],
+        ['Déclaration AGIS · v1.1.6', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-agis/main/declaration-agis-automatique.user.js'],
+        ['Déclaration CIEL · v1.0.18', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-ciel/main/declaration-ciel-automatique.user.js'],
+        ['REPAM rappel adhésion · v3.3.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js'],
+        ['Export ModulR vers KOALAH · v0.3.6', 'https://raw.githubusercontent.com/BiggerThanTheMall/export_modulr_koalah/main/export_modulr_koalah.user.js']
     ];
 
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
