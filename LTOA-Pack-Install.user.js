@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LTOA - Pack Outils Tampermonkey
 // @namespace    https://github.com/BiggerThanTheMall/tampermonkey-ltoa
-// @version      1.1.0
+// @version      1.1.1
 // @description  Point d'entrée unique pour installer ou remettre à jour les outils LTOA.
 // @author       LTOA Assurances
 // @match        https://courtage.modulr.fr/*
@@ -36,7 +36,7 @@
         ['Déclaration AGIS · v1.1.6', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-agis/main/declaration-agis-automatique.user.js'],
         ['Déclaration CIEL · v1.0.18', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-ciel/main/declaration-ciel-automatique.user.js'],
         ['REPAM rappel adhésion · v3.3.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js'],
-        ['Export ModulR vers KOALAH · v0.4.6', 'https://raw.githubusercontent.com/BiggerThanTheMall/export_modulr_koalah/main/export_modulr_koalah.user.js']
+        ['Export ModulR vers KOALAH · v0.4.6', 'https://github.com/BiggerThanTheMall/export_modulr_koalah/raw/refs/heads/main/export_modulr_koalah.user.js']
     ];
 
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
