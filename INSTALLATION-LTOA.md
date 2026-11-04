@@ -2,7 +2,7 @@
 
 Cette page est la référence unique pour l'installation des scripts Tampermonkey LTOA.
 
-Les liens « Installer » ouvrent directement le fichier `.user.js` public dans Tampermonkey. Les dépôts privés nécessitent la procédure manuelle indiquée plus bas.
+Les liens « Installer » ouvrent directement le fichier `.user.js` dans Tampermonkey. Le dépôt de chaque script doit être public pour permettre les mises à jour automatiques.
 
 | Outil | Version vérifiée | Installation |
 |---|---:|---|
@@ -27,24 +27,23 @@ Les liens « Installer » ouvrent directement le fichier `.user.js` public dans 
 | Import Aircall | 1.2.2 | [Installer](https://raw.githubusercontent.com/BiggerThanTheMall/modulr-aircall-import/main/modulr-aircall-import.user.js) |
 | Déclaration AGIS | 1.1.6 | [Installer](https://raw.githubusercontent.com/BiggerThanTheMall/declaration-agis/main/declaration-agis-automatique.user.js) |
 | REPAM rappel adhésion | 3.3.1 | [Installer](https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js) |
-| Export ModulR → KOALAH — dépôt privé | 0.4.10 | [Ouvrir le fichier GitHub](https://github.com/BiggerThanTheMall/export_modulr_koalah/blob/main/export_modulr_koalah.user.js) — installation manuelle ci-dessous |
+| Export ModulR → KOALAH | 0.4.11 | [Installer](https://raw.githubusercontent.com/BiggerThanTheMall/export_modulr_koalah/main/export_modulr_koalah.user.js) |
 
 ## Vérification des versions
 
-Inventaire contrôlé le 4 novembre 2026 sur les branches `main` des 22 scripts. Les 21 liens d'installation publics ont été testés sans authentification : réponse HTTP 200 et contenu userscript. KOALAH reste privé : ses anciennes URL brutes renvoyaient HTTP 404 sans authentification. Comparez les versions indiquées à `@version` dans Tampermonkey.
+Inventaire contrôlé le 4 novembre 2026 sur les branches `main` des 22 scripts. Les 21 liens d'installation publics ont été testés sans authentification : réponse HTTP 200 et contenu userscript. KOALAH nécessite le passage du dépôt en public dans les réglages GitHub ; tant que cette action n'est pas effectuée, son lien renvoie HTTP 404 sans authentification. Comparez les versions indiquées à `@version` dans Tampermonkey.
 
-## Installation et mise à jour de KOALAH (dépôt privé)
+## Mise à jour automatique de KOALAH
 
-1. Se connecter à GitHub avec un compte autorisé à accéder au dépôt KOALAH.
-2. Ouvrir le fichier via le lien du tableau et copier tout son contenu.
-3. Dans Tampermonkey, ouvrir le script KOALAH existant, ou créer un nouveau script s'il n'est pas installé.
-4. Remplacer tout le contenu, enregistrer avec `Ctrl + S`, puis recharger Modulr et Koalah.
+Les adresses `@updateURL` et `@downloadURL` d'origine sont rétablies en version 0.4.11. Le nom et le namespace restent identiques.
 
-La version 0.4.10 désactive les URL de mise à jour automatique qui renvoyaient 404. Les mises à jour de KOALAH restent manuelles tant qu'aucune adresse de distribution accessible à Tampermonkey n'est configurée. Le dépôt conserve sa confidentialité.
+Le dépôt `export_modulr_koalah` doit être public. Si son lien renvoie encore 404, passer le dépôt en public dans GitHub : Settings → General → Danger Zone → Change repository visibility → Make public.
+
+Si la version 0.4.10 a été installée, ouvrir une fois le lien « Installer » de KOALAH pour réactiver les mises à jour automatiques. Les anciennes versions qui conservent l'URL d'origine pourront récupérer la nouvelle version automatiquement une fois le dépôt public.
 
 ## Important
 
 - Pour un collaborateur déjà équipé, ne réinstallez que les scripts dont la version installée est inférieure à celle affichée ici.
 - Pour un nouveau poste, cette page sert de point d'entrée unique.
-- Les scripts publics conservent leurs propres `@updateURL` et `@downloadURL` vérifiés. KOALAH utilise la procédure manuelle ci-dessus.
+- Les scripts conservent leurs adresses `@updateURL` et `@downloadURL` d'origine. La disponibilité automatique de KOALAH dépend du passage de son dépôt en public.
 - Si un autre script installé affiche encore une ancienne adresse dans Tampermonkey, ouvrir son lien « Installer » une fois pour reprendre les métadonnées actuelles.
