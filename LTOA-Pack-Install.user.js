@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LTOA - Pack Outils Tampermonkey
 // @namespace    https://github.com/BiggerThanTheMall/tampermonkey-ltoa
-// @version      1.1.1
+// @version      1.1.2
 // @description  Point d'entrée unique pour installer ou remettre à jour les outils LTOA.
 // @author       LTOA Assurances
 // @match        https://courtage.modulr.fr/*
@@ -15,7 +15,7 @@
     'use strict';
 
     const SCRIPTS = [
-        ['Rapport quotidien V5 · v5.7.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/G-n-re-un-rapport-d-activit-quotidien-complet-emails-t-ches-journalisation-vulgaris-e-/main/LTOA-Modulr-Rapport-Quotidien.user.js'],
+        ['Rapport quotidien V5 · v5.9.6', 'https://raw.githubusercontent.com/BiggerThanTheMall/G-n-re-un-rapport-d-activit-quotidien-complet-emails-t-ches-journalisation-vulgaris-e-/main/LTOA-Modulr-Rapport-Quotidien.user.js'],
         ['Tâche automatique changement état devis · v11.3.0', 'https://raw.githubusercontent.com/BiggerThanTheMall/tache_automatique/main/creation_tache_automatique_changement_etat_devis.user.js'],
         ['Terminer et dupliquer tâche · v2.3', 'https://raw.githubusercontent.com/BiggerThanTheMall/terminer-et-dupliquer-tache/main/terminer-et-dupliquer-tache.user.js'],
         ['Dupliquer et associer client · v1.9.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/Duplique-une-fiche-client-et-l-associe-automatiquement-au-client-d-origine/main/Modulr-Dupliquer-Associer-Client.user.js'],
@@ -24,7 +24,7 @@
         ['Boutons copie rapide · v2.0.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/ModulR-Boutons-Copie/main/Modulr-Boutons-Copie-Rapide.user.js'],
         ['Affichage âge client · v1.1.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/ModulR-Affichage-Age/main/Modulr-Affichage-Age.user.js'],
         ['Âge dirigeants entreprise · v2.2', 'https://raw.githubusercontent.com/BiggerThanTheMall/-l-ge-et-la-date-de-naissance-de-TOUS-les-dirigeants/main/Modulr-Age-Dirigeants-Entreprise.user.js'],
-        ['Création devis en masse · v1.7', 'https://raw.githubusercontent.com/BiggerThanTheMall/cr-er-plusieurs-devis-simultan-ment/main/modulr-creation-devis-en-masse-iframes.user.js'],
+        ['Création devis en masse · v2.0.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/cr-er-plusieurs-devis-simultan-ment/main/modulr-creation-devis-en-masse-iframes.user.js'],
         ['Export client ModulR vers OGGO / AXA · v4.10.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/Exporte-automatiquement-un-client-de-Modulr-vers-OGGO-Data-ou-AXA-Particulier-Entreprise-/main/Modulr-Export-Client-OGGO-AXA.user.js'],
         ['OGGO Projet chaud · v1.5', 'https://raw.githubusercontent.com/BiggerThanTheMall/OGGO-DATA-Projet-Chaud/main/OGGO-Projet-Chaud-Auto.user.js'],
         ['OCR documents vers ModulR · v10.2.2', 'https://raw.githubusercontent.com/BiggerThanTheMall/Auto-remplissage-CRM-Modulr---OCR-CNI-Permis-Passeport-KBIS-via-Gemini/main/Modulr-Remplissage-Auto-OCR-V9.user.js'],
@@ -36,8 +36,10 @@
         ['Déclaration AGIS · v1.1.6', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-agis/main/declaration-agis-automatique.user.js'],
         ['Déclaration CIEL · v1.0.18', 'https://raw.githubusercontent.com/BiggerThanTheMall/declaration-ciel/main/declaration-ciel-automatique.user.js'],
         ['REPAM rappel adhésion · v3.3.1', 'https://raw.githubusercontent.com/BiggerThanTheMall/tampermonkey-ltoa/main/REPAM-Rappel-Adhesion.user.js'],
-        ['Export ModulR vers KOALAH · v0.4.6', 'https://github.com/BiggerThanTheMall/export_modulr_koalah/raw/refs/heads/main/export_modulr_koalah.user.js']
+        ['Export ModulR vers KOALAH · v0.4.10 (privé, copie manuelle)', 'https://github.com/BiggerThanTheMall/export_modulr_koalah/blob/main/export_modulr_koalah.user.js', true]
     ];
+
+    const PUBLIC_SCRIPTS = SCRIPTS.filter(([, , manual]) => !manual);
 
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -48,14 +50,14 @@
             button.textContent = 'Ouverture en cours…';
         }
 
-        for (const [, url] of SCRIPTS) {
+        for (const [, url] of PUBLIC_SCRIPTS) {
             GM_openInTab(url, { active: false, insert: true, setParent: true });
             await sleep(350);
         }
 
         if (button) {
             button.disabled = false;
-            button.textContent = `Ouvrir les ${SCRIPTS.length} installations / mises à jour`;
+            button.textContent = `Ouvrir les ${PUBLIC_SCRIPTS.length} installations / mises à jour`;
         }
     }
 
@@ -75,20 +77,20 @@
         modal.appendChild(title);
 
         const info = document.createElement('p');
-        info.textContent = 'Un clic ouvre tous les scripts. Tampermonkey demandera ensuite de confirmer chaque installation / mise à jour.';
+        info.textContent = 'Un clic ouvre les scripts publics. Tampermonkey demandera de confirmer chaque installation / mise à jour. Pour KOALAH, connectez-vous à GitHub, copiez le fichier puis remplacez le contenu du script dans Tampermonkey et enregistrez.';
         info.style.cssText = 'margin:0 0 16px;color:#555;line-height:1.45;';
         modal.appendChild(info);
 
         const openAllBtn = document.createElement('button');
         openAllBtn.id = 'ltoa-pack-open-all';
-        openAllBtn.textContent = `Ouvrir les ${SCRIPTS.length} installations / mises à jour`;
+        openAllBtn.textContent = `Ouvrir les ${PUBLIC_SCRIPTS.length} installations / mises à jour`;
         openAllBtn.style.cssText = 'width:100%;padding:12px 16px;border:0;border-radius:8px;background:#193552;color:white;font-weight:700;cursor:pointer;margin-bottom:16px;';
         openAllBtn.onclick = openAll;
         modal.appendChild(openAllBtn);
 
         const list = document.createElement('div');
         list.style.cssText = 'display:grid;gap:7px;';
-        SCRIPTS.forEach(([name, url], index) => {
+        SCRIPTS.forEach(([name, url, manual], index) => {
             const row = document.createElement('div');
             row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #e5e5e5;border-radius:7px;';
 
@@ -97,7 +99,7 @@
             label.style.cssText = 'flex:1;font-size:13px;';
 
             const btn = document.createElement('button');
-            btn.textContent = 'Installer';
+            btn.textContent = manual ? 'Ouvrir le fichier' : 'Installer';
             btn.style.cssText = 'padding:6px 10px;border:1px solid #193552;border-radius:6px;background:white;color:#193552;cursor:pointer;font-weight:600;';
             btn.onclick = () => GM_openInTab(url, { active: true, insert: true, setParent: true });
 
