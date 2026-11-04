@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LTOA - Pack Outils Tampermonkey
 // @namespace    https://github.com/BiggerThanTheMall/tampermonkey-ltoa
-// @version      1.1.3
+// @version      1.1.4
 // @description  Point d'entrée unique pour installer ou remettre à jour les outils LTOA.
 // @author       LTOA Assurances
 // @match        https://courtage.modulr.fr/*
@@ -75,7 +75,7 @@
         modal.appendChild(title);
 
         const info = document.createElement('p');
-        info.textContent = 'Un clic ouvre tous les scripts. Tampermonkey demandera ensuite de confirmer chaque installation / mise à jour. Le dépôt KOALAH doit être public pour que son lien fonctionne.';
+        info.textContent = 'Un clic ouvre tous les scripts. Tampermonkey demandera ensuite de confirmer chaque installation / mise à jour. Si un onglet affiche du code, copiez son adresse et utilisez Tampermonkey → Tableau de bord → Utilitaires → Importer depuis une URL.';
         info.style.cssText = 'margin:0 0 16px;color:#555;line-height:1.45;';
         modal.appendChild(info);
 
