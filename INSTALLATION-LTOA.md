@@ -2,7 +2,7 @@
 
 Cette page est la référence unique pour l'installation des scripts Tampermonkey LTOA.
 
-Les liens « Installer » ouvrent directement le fichier `.user.js` dans Tampermonkey. Le dépôt de chaque script doit être public pour permettre les mises à jour automatiques.
+Les liens « Installer » pointent vers les fichiers `.user.js` publics. Tampermonkey peut proposer l'installation ; si le navigateur affiche simplement du code, utiliser l'import depuis une URL décrit ci-dessous.
 
 | Outil | Version vérifiée | Installation |
 |---|---:|---|
@@ -31,19 +31,33 @@ Les liens « Installer » ouvrent directement le fichier `.user.js` dans Tamperm
 
 ## Vérification des versions
 
-Inventaire contrôlé le 4 novembre 2026 sur les branches `main` des 22 scripts. Les 21 liens d'installation publics ont été testés sans authentification : réponse HTTP 200 et contenu userscript. KOALAH nécessite le passage du dépôt en public dans les réglages GitHub ; tant que cette action n'est pas effectuée, son lien renvoie HTTP 404 sans authentification. Comparez les versions indiquées à `@version` dans Tampermonkey.
+Inventaire contrôlé le 4 novembre 2026. Les 22 liens du tableau ont été testés sans authentification : HTTP 200 et contenu userscript, y compris KOALAH désormais public. Les 25 fichiers `.user.js` des dépôts publics ont aussi été contrôlés (pack et outils de test compris).
 
 ## Mise à jour automatique de KOALAH
 
 Les adresses `@updateURL` et `@downloadURL` d'origine sont rétablies en version 0.4.11. Le nom et le namespace restent identiques.
 
-Le dépôt `export_modulr_koalah` doit être public. Si son lien renvoie encore 404, passer le dépôt en public dans GitHub : Settings → General → Danger Zone → Change repository visibility → Make public.
+Le dépôt `export_modulr_koalah` est public. Les deux URL d'origine répondent HTTP 200 sans authentification.
 
 Si la version 0.4.10 a été installée, ouvrir une fois le lien « Installer » de KOALAH pour réactiver les mises à jour automatiques. Les anciennes versions qui conservent l'URL d'origine pourront récupérer la nouvelle version automatiquement une fois le dépôt public.
 
 ## Important
 
-- Pour un collaborateur déjà équipé, ne réinstallez que les scripts dont la version installée est inférieure à celle affichée ici.
+- Pour un collaborateur déjà équipé, utiliser les mises à jour du script existant. Si ses adresses sont absentes, anciennes ou désactivées, réimporter une fois le lien actuel même si la version affichée est identique.
 - Pour un nouveau poste, cette page sert de point d'entrée unique.
-- Les scripts conservent leurs adresses `@updateURL` et `@downloadURL` d'origine. La disponibilité automatique de KOALAH dépend du passage de son dépôt en public.
+- Les scripts conservent leurs adresses `@updateURL` et `@downloadURL` d'origine. KOALAH est public et accessible sans connexion GitHub.
 - Si un autre script installé affiche encore une ancienne adresse dans Tampermonkey, ouvrir son lien « Installer » une fois pour reprendre les métadonnées actuelles.
+
+## Installer depuis un lien et vérifier les mises à jour
+
+### Si le lien affiche du code au lieu d'ouvrir l'installation
+
+Dans Tampermonkey : **Tableau de bord → Utilitaires → Importer depuis une URL**. Coller le lien « Installer » ci-dessus, lancer l'import puis confirmer l'installation ou la mise à jour. Cette méthode permet l'import même si le navigateur ne reconnaît pas automatiquement un lien `.user.js`.
+
+### Mises à jour automatiques
+
+Les adresses indiquées sont présentes dans l'en-tête des fichiers et restent fixes. Dans les paramètres Tampermonkey, activer les vérifications de mise à jour et choisir une fréquence régulière. Vérifier aussi que la recherche de mises à jour est autorisée pour le script concerné. Une vérification manuelle permet de tester sans attendre la prochaine vérification planifiée.
+
+Une modification du code sur GitHub doit être accompagnée d'une augmentation de `@version` pour être reconnue comme une nouvelle version. Un commit seul ne suffit pas. Si une installation conserve une ancienne adresse, importer une fois le lien actuel dans le script existant. Ne pas supprimer le script pour conserver ses réglages.
+
+Documentation officielle : [import depuis une URL](https://www.tampermonkey.net/faq.php?q=Q106), [version du script](https://www.tampermonkey.net/documentation.php?q=version), [adresses de mise à jour](https://www.tampermonkey.net/documentation.php?q=update_url).
